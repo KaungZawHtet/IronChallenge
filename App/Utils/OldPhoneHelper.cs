@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using App.Constants;
 
@@ -8,23 +9,23 @@ namespace App.Utils;
 
 public static class OldPhoneHelper
 {
-    public static readonly Dictionary<char, string[]> data = new()
+    public static readonly Dictionary<char, char[]> data = new()
     {
-        { '1', new string[] { "&", "'", ")" } },
-        { '2', new string[] { "A", "B", "C" } },
-        { '3', new string[] { "D", "E", "F" } },
-        { '4', new string[] { "G", "H", "I" } },
-        { '5', new string[] { "J", "K", "L" } },
-        { '6', new string[] { "M", "N", "O" } },
-        { '7', new string[] { "P", "Q", "R", "S" } },
-        { '8', new string[] { "T", "U", "V" } },
-        { '9', new string[] { "W", "X", "Y", "Z" } },
-        { '0', new string[] { " " } },
-        { '>', new string[] { "#" } },
+        { '1', new char[] { '&', '`', ')' } },
+        { '2', new char[] { 'A', 'B', 'C' } },
+        { '3', new char[] { 'D', 'E', 'F' } },
+        { '4', new char[] { 'G', 'H', 'I' } },
+        { '5', new char[] { 'J', 'K', 'L' } },
+        { '6', new char[] { 'M', 'N', 'O' } },
+        { '7', new char[] { 'P', 'Q', 'R', 'S' } },
+        { '8', new char[] { 'T', 'U', 'V' } },
+        { '9', new char[] { 'W', 'X', 'Y', 'Z' } },
+        { '0', new char[] { ' ' } },
+        { '>', new char[] { '#' } },
         { '*', [] },
     };
 
-    public static string RetrieveCharacter(string charGroup)
+    public static char RetrieveCharacter(string charGroup)
     {
         var distinctCharGroup = charGroup.Distinct().ToList();
 
@@ -43,6 +44,39 @@ public static class OldPhoneHelper
 
     public static string OldPhonePad(string input)
     {
-        return input;
+        LinkedList<char> charLinkedList = new();
+        var craftedInput = input.Aggregate(
+            new List<string>(),
+            (accumulator, next) =>
+            {
+                if (accumulator.Count == 0 || accumulator.Last().First() != next)
+                {
+                    accumulator.Add($"{next}");
+                }
+                else
+                {
+                    accumulator[accumulator.Count - 1] += next;
+                }
+
+                return accumulator;
+            }
+        );
+
+        foreach (var item in craftedInput)
+        {
+            if (item == "*")
+            {
+                charLinkedList.RemoveLast();
+            }
+            else if (item == " ")
+            {
+                continue;
+            }
+            else
+            {
+                charLinkedList.AddLast(RetrieveCharacter(item));
+            }
+        }
+        return string.Concat(charLinkedList);
     }
 }
