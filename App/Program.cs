@@ -1,2 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using App;
+
+while (true)
+{
+    Console.WriteLine("Enter Number:");
+    var number = Console.ReadLine();
+    Console.WriteLine($"{OldPhoneHelper.OldPhonePad(number)}");
+}

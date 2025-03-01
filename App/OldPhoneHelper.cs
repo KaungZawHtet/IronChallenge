@@ -7,8 +7,11 @@ namespace App;
 
 public static class OldPhoneHelper
 {
-    public static string OldPhonePad(string input)
+    public static string OldPhonePad(string? input)
     {
+        if (input is null)
+            return string.Empty;
+
         return input;
     }
 }
