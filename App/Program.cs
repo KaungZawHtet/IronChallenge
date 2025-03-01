@@ -1,8 +1,9 @@
 ﻿using App;
+using App.Utils;
 
 while (true)
 {
     Console.WriteLine("Enter Number:");
-    var number = Console.ReadLine() ?? string.Empty;
-    Console.WriteLine($"{OldPhoneHelper.OldPhonePad(number)}");
+    var input = Console.ReadLine() ?? string.Empty;
+    Console.WriteLine($"Output : {OldPhoneHelper.RetrieveCharacter(input)}");
 }
