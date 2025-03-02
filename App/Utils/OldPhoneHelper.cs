@@ -22,7 +22,7 @@ public static class OldPhoneHelper
 
     private static readonly Dictionary<char, char[]> numberDict = new()
     {
-        { one, new char[] { '&', '\'', ')' } },
+        { one, new char[] { '&', '\'', '(' } },
         { two, new char[] { 'A', 'B', 'C' } },
         { three, new char[] { 'D', 'E', 'F' } },
         { four, new char[] { 'G', 'H', 'I' } },
@@ -73,7 +73,7 @@ public static class OldPhoneHelper
 
         foreach (var currentSegmentedInput in segmentedInputList)
         {
-            if (currentSegmentedInput[0] == starAsDelete)
+            if (currentSegmentedInput[0] == starAsDelete && alphabetList.Any())
             {
                 alphabetList.RemoveLast();
             }
@@ -83,9 +83,11 @@ public static class OldPhoneHelper
             }
             else if (currentSegmentedInput[0] == zero)
             {
-                currentSegmentedInput
-                    .ToString()
-                    .Select(x => alphabetList.AddLast(numberDict[zero].First()));
+                var zeroGroup = currentSegmentedInput.ToString();
+                foreach (var item in zeroGroup)
+                {
+                    alphabetList.AddLast(numberDict[zero].First());
+                }
             }
             else if (currentSegmentedInput[0] == hashAsSend)
             {
