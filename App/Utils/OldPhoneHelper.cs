@@ -7,19 +7,31 @@ public static class OldPhoneHelper
 {
     private const char starAsDelete = '*';
     public const char hashAsSend = '#';
-    private const char space = ' ';
+    private const char spaceAsInterval = ' ';
+
+    private const char zero = '0';
+    private const char one = '1';
+    private const char two = '2';
+    private const char three = '3';
+    private const char four = '4';
+    private const char five = '5';
+    private const char six = '6';
+    private const char seven = '7';
+    private const char eight = '8';
+    private const char nine = '9';
 
     private static readonly Dictionary<char, char[]> numberDict = new()
     {
-        { '1', new char[] { '&', '\'', ')' } },
-        { '2', new char[] { 'A', 'B', 'C' } },
-        { '3', new char[] { 'D', 'E', 'F' } },
-        { '4', new char[] { 'G', 'H', 'I' } },
-        { '5', new char[] { 'J', 'K', 'L' } },
-        { '6', new char[] { 'M', 'N', 'O' } },
-        { '7', new char[] { 'P', 'Q', 'R', 'S' } },
-        { '8', new char[] { 'T', 'U', 'V' } },
-        { '9', new char[] { 'W', 'X', 'Y', 'Z' } },
+        { one, new char[] { '&', '\'', ')' } },
+        { two, new char[] { 'A', 'B', 'C' } },
+        { three, new char[] { 'D', 'E', 'F' } },
+        { four, new char[] { 'G', 'H', 'I' } },
+        { five, new char[] { 'J', 'K', 'L' } },
+        { six, new char[] { 'M', 'N', 'O' } },
+        { seven, new char[] { 'P', 'Q', 'R', 'S' } },
+        { eight, new char[] { 'T', 'U', 'V' } },
+        { nine, new char[] { 'W', 'X', 'Y', 'Z' } },
+        { zero, new char[] { ' ' } },
     };
 
     private static char? RetrieveCharacter(string charGroup)
@@ -65,9 +77,15 @@ public static class OldPhoneHelper
             {
                 alphabetList.RemoveLast();
             }
-            else if (currentSegmentedInput[0] == space)
+            else if (currentSegmentedInput[0] == spaceAsInterval)
             {
                 continue;
+            }
+            else if (currentSegmentedInput[0] == zero)
+            {
+                currentSegmentedInput
+                    .ToString()
+                    .Select(x => alphabetList.AddLast(numberDict[zero].First()));
             }
             else if (currentSegmentedInput[0] == hashAsSend)
             {
