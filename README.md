@@ -44,7 +44,7 @@ dotnet run --project App
 ```
 
 ## Running Tests
-The project includes a basic test suite. To execute tests, run:
+The project includes a test suite. To execute tests, run:
 ```sh
 dotnet test
 ```
