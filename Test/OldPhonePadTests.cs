@@ -43,4 +43,13 @@ public class OldPhonePadTests
         var result = OldPhoneHelper.OldPhonePad(input);
         Assert.That(result, Is.EqualTo(expected));
     }
+
+    [Test]
+    public void OldPhonePad_IgnoringAfterSend()
+    {
+        var expected = "E";
+        var input = "33#33#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
 }

@@ -5,7 +5,7 @@ namespace App.Utils;
 public static class OldPhoneHelper
 {
     private const string starAsDelete = "*";
-    private const string hash = "#";
+    private const string hashAsSend = "#";
     private const string space = " ";
 
     private static readonly Dictionary<char, char[]> numberDict = new()
@@ -64,9 +64,13 @@ public static class OldPhoneHelper
             {
                 charLinkedList.RemoveLast();
             }
-            else if (item == space || item == hash)
+            else if (item == space)
             {
                 continue;
+            }
+            else if (item == hashAsSend)
+            {
+                break; //  This treat hash as final send button by ignoring all input after send button.
             }
             else
             {

@@ -9,5 +9,5 @@ public static class CommonInfo
 {
     public const int RightDistrictCount = 1;
 
-    public const string RegexPatternForInput = @"^[0-9 *#]*$";
+    public const string RegexPatternForInput = @"^[0-9 *#]*$"; //By using this regex pattern, we only allow number, space, * and #
 }
