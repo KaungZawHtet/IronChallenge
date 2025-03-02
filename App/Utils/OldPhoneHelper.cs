@@ -5,7 +5,7 @@ namespace App.Utils;
 public static class OldPhoneHelper
 {
     private const string starAsDelete = "*";
-    private const string hashAsSend = "#";
+    public const string hashAsSend = "#";
     private const string space = " ";
 
     private static readonly Dictionary<char, char[]> numberDict = new()

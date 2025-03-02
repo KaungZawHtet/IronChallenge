@@ -8,16 +8,16 @@ while (true)
 {
     try
     {
-        Console.Write("Enter Number : ");
+        Console.Write(Messages.InputInquiry);
         var input = Console.ReadLine() ?? string.Empty;
 
         if (!regex.IsMatch(input))
             throw new InvalidOperationException(Messages.InvalidChars);
 
-        if (input.Last() is not '#')
+        if (input.Last() != OldPhoneHelper.hashAsSend.SingleOrDefault())
             throw new InvalidOperationException(Messages.InvalidLastChar);
 
-        Console.WriteLine($"Output : {OldPhoneHelper.OldPhonePad(input)}");
+        Console.WriteLine(string.Format(Messages.OutputResult, OldPhoneHelper.OldPhonePad(input)));
     }
     catch (Exception ex)
     {
