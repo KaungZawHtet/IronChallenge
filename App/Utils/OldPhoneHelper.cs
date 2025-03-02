@@ -38,7 +38,7 @@ public static class OldPhoneHelper
     {
         var distinctCharGroup = charGroup.Distinct().ToList();
 
-        if (distinctCharGroup.Count() is not CommonInfo.RightDistrictCount)
+        if (distinctCharGroup.Count() is not CommonInfo.RightDistinctCount)
             throw new InvalidOperationException(Messages.InvalidCharGroupErrorMessage);
 
         var key = charGroup.First();
