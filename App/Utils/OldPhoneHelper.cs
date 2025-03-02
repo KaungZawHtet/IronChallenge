@@ -9,6 +9,7 @@ public static class OldPhoneHelper
     public const char hashAsSend = '#';
     private const char spaceAsInterval = ' ';
 
+    //This way of keeping 0, 1, 2, 3 ... may be controversial and can say over-engineered in some perspectives. But for this moment, I choose to keep like this.
     private const char zero = '0';
     private const char one = '1';
     private const char two = '2';
