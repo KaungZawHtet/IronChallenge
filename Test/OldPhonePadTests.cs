@@ -15,7 +15,6 @@ public class OldPhonePadTests
         var input = "33#";
         var result = OldPhoneHelper.OldPhonePad(input);
         Assert.That(result, Is.EqualTo(expected));
-
     }
 
     [Test]
