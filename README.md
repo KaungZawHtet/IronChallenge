@@ -1,7 +1,7 @@
-# Iron Challenge
+# Iron Challenge (OldPhonePad)
 
 ## Overview
-This is a simple .NET console application that simulate multi-tap text input in old phones.
+This is a .NET console application that simulate multi-tap text input in old phones (OldPhonePad).
 
 ## Prerequisites
 - .NET SDK (latest version recommended)
@@ -23,7 +23,7 @@ This is a simple .NET console application that simulate multi-tap text input in 
 ## Setup & Installation
 1. Clone the repository:
    ```sh
-   git clone <iron-challenge-url>
+   git clone https://github.com/KaungZawHtet/IronChallenge.git
    cd IronChallenge
    ```
 
@@ -50,4 +50,4 @@ dotnet test
 ```
 
 ## Contact
-For any inquiries, feel free to reach out via email.
+For any inquiries, feel free to reach out via email, kaungzawhtet.mm@gmail.com 
