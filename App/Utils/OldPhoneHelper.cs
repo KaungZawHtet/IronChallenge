@@ -4,7 +4,11 @@ namespace App.Utils;
 
 public static class OldPhoneHelper
 {
-    public static readonly Dictionary<char, char[]> data = new()
+    private const string starAsDelete = "*";
+    private const string hash = "#";
+    private const string space = " ";
+
+    private static readonly Dictionary<char, char[]> numberDict = new()
     {
         { '1', new char[] { '&', '\'', ')' } },
         { '2', new char[] { 'A', 'B', 'C' } },
@@ -15,9 +19,6 @@ public static class OldPhoneHelper
         { '7', new char[] { 'P', 'Q', 'R', 'S' } },
         { '8', new char[] { 'T', 'U', 'V' } },
         { '9', new char[] { 'W', 'X', 'Y', 'Z' } },
-        { '0', new char[] { ' ' } },
-        { '>', new char[] { '#' } },
-        { '*', [] },
     };
 
     public static char? RetrieveCharacter(string charGroup)
@@ -29,12 +30,12 @@ public static class OldPhoneHelper
 
         var key = charGroup.First();
 
-        if (!data.ContainsKey(key))
+        if (!numberDict.ContainsKey(key))
             return null;
 
-        var targetIndex = (charGroup.Length - 1) % data[key].Length;
+        var targetIndex = (charGroup.Length - 1) % numberDict[key].Length;
 
-        return data[key][targetIndex];
+        return numberDict[key][targetIndex];
     }
 
     public static string OldPhonePad(string input)
@@ -59,11 +60,11 @@ public static class OldPhoneHelper
 
         foreach (var item in craftedInput)
         {
-            if (item == "*")
+            if (item == starAsDelete)
             {
                 charLinkedList.RemoveLast();
             }
-            else if (item == " " || item == "#")
+            else if (item == space || item == hash)
             {
                 continue;
             }
