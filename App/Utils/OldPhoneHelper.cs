@@ -51,10 +51,8 @@ public static class OldPhoneHelper
         return numberDict[key][targetIndex];
     }
 
-    public static string OldPhonePad(string input)
-    {
-        LinkedList<char> alphabetList = new();
-        var segmentedInputList = input.Aggregate(
+    private static List<StringBuilder> SeparateSameCharSequenceIntoList(string input) =>
+        input.Aggregate(
             new List<StringBuilder>(),
             (accumulator, next) =>
             {
@@ -70,6 +68,12 @@ public static class OldPhoneHelper
                 return accumulator;
             }
         );
+
+    public static LinkedList<char> ConvertSameCharSequenceListIntoAlphabetList(
+        List<StringBuilder> segmentedInputList
+    )
+    {
+        LinkedList<char> alphabetList = new();
 
         foreach (var currentSegmentedInput in segmentedInputList)
         {
@@ -99,6 +103,13 @@ public static class OldPhoneHelper
                     alphabetList.AddLast(alpha);
             }
         }
-        return string.Concat(alphabetList);
+        return alphabetList;
+    }
+
+    // Here this is the main code challange function
+    public static string OldPhonePad(string input)
+    {
+        var segmentedInputList = SeparateSameCharSequenceIntoList(input);
+        return string.Concat(ConvertSameCharSequenceListIntoAlphabetList(segmentedInputList));
     }
 }

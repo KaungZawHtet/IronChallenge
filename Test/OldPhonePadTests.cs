@@ -1,13 +1,9 @@
-﻿using App;
-using App.Utils;
+﻿using App.Utils;
 
 namespace Test;
 
 public class OldPhonePadTests
 {
-    [SetUp]
-    public void Setup() { }
-
     [Test]
     public void OldPhonePad_ReturnE()
     {
