@@ -21,7 +21,7 @@ public static class OldPhoneHelper
         { '9', new char[] { 'W', 'X', 'Y', 'Z' } },
     };
 
-    public static char? RetrieveCharacter(string charGroup)
+    private static char? RetrieveCharacter(string charGroup)
     {
         var distinctCharGroup = charGroup.Distinct().ToList();
 
