@@ -12,27 +12,36 @@ public class OldPhonePadTests
     public void OldPhonePad_ReturnE()
     {
         var expected = "E";
-        var result = OldPhoneHelper.OldPhonePad("");
-        Assert.Pass();
+        var input = "33#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+
     }
 
     [Test]
     public void OldPhonePad_ReturnB()
     {
         var expected = "B";
-        Assert.Pass();
+        var input = "227*#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
     public void OldPhonePad_ReturnHELLO()
     {
         var expected = "HELLO";
-        Assert.Pass();
+        var input = "4433555 555666#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
     public void OldPhonePad_ReturnWeird()
     {
-        Assert.Pass();
+        var expected = "TURING";
+        var input = "8 88777444666*664#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
     }
 }
