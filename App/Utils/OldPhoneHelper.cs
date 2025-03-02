@@ -47,7 +47,7 @@ public static class OldPhoneHelper
         if (!numberDict.ContainsKey(key))
             return null;
 
-        var targetIndex = (charGroup.Length - 1) % numberDict[key].Length;
+        var targetIndex = (charGroup.Length - 1) % numberDict[key].Length; // Circular indexing
 
         return numberDict[key][targetIndex];
     }
