@@ -69,7 +69,7 @@ public static class OldPhoneHelper
             }
         );
 
-    public static LinkedList<char> ConvertSameCharSequenceListIntoAlphabetList(
+    private static LinkedList<char> ConvertSameCharSequenceListIntoAlphabetTrain(
         List<StringBuilder> segmentedInputList
     )
     {
@@ -95,7 +95,7 @@ public static class OldPhoneHelper
             }
             else if (currentSegmentedInput[0] == hashAsSend)
             {
-                break; //  This treat hash as final send button by ignoring all input after send button.
+                break; //  This treats hash as final send button by ignoring all input after send button.
             }
             else
             {
@@ -106,10 +106,10 @@ public static class OldPhoneHelper
         return alphabetList;
     }
 
-    // Here this is the main code challange function
+    // Here, this is the main code challange function
     public static string OldPhonePad(string input)
     {
         var segmentedInputList = SeparateSameCharSequenceIntoList(input);
-        return string.Concat(ConvertSameCharSequenceListIntoAlphabetList(segmentedInputList));
+        return string.Concat(ConvertSameCharSequenceListIntoAlphabetTrain(segmentedInputList));
     }
 }
