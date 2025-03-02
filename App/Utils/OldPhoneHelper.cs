@@ -1,12 +1,13 @@
+using System.Text;
 using App.Constants;
 
 namespace App.Utils;
 
 public static class OldPhoneHelper
 {
-    private const string starAsDelete = "*";
-    public const string hashAsSend = "#";
-    private const string space = " ";
+    private const char starAsDelete = '*';
+    public const char hashAsSend = '#';
+    private const char space = ' ';
 
     private static readonly Dictionary<char, char[]> numberDict = new()
     {
@@ -40,44 +41,44 @@ public static class OldPhoneHelper
 
     public static string OldPhonePad(string input)
     {
-        LinkedList<char> charLinkedList = new();
-        var craftedInput = input.Aggregate(
-            new List<string>(),
+        LinkedList<char> alphabetList = new();
+        var segmentedInputList = input.Aggregate(
+            new List<StringBuilder>(),
             (accumulator, next) =>
             {
-                if (accumulator.Count == 0 || accumulator.Last().First() != next)
+                if (accumulator.Count == 0 || accumulator.Last()[0] != next)
                 {
-                    accumulator.Add($"{next}");
+                    accumulator.Add(new StringBuilder($"{next}"));
                 }
                 else
                 {
-                    accumulator[accumulator.Count - 1] += next;
+                    accumulator[accumulator.Count - 1].Append(next);
                 }
 
                 return accumulator;
             }
         );
 
-        foreach (var item in craftedInput)
+        foreach (var currentSegmentedInput in segmentedInputList)
         {
-            if (item == starAsDelete)
+            if (currentSegmentedInput[0] == starAsDelete)
             {
-                charLinkedList.RemoveLast();
+                alphabetList.RemoveLast();
             }
-            else if (item == space)
+            else if (currentSegmentedInput[0] == space)
             {
                 continue;
             }
-            else if (item == hashAsSend)
+            else if (currentSegmentedInput[0] == hashAsSend)
             {
                 break; //  This treat hash as final send button by ignoring all input after send button.
             }
             else
             {
-                if (RetrieveCharacter(item) is { } alpha)
-                    charLinkedList.AddLast(alpha);
+                if (RetrieveCharacter(currentSegmentedInput.ToString()) is { } alpha)
+                    alphabetList.AddLast(alpha);
             }
         }
-        return string.Concat(charLinkedList);
+        return string.Concat(alphabetList);
     }
 }
