@@ -36,7 +36,7 @@ public class OldPhonePadTests
     }
 
     [Test]
-    public void OldPhonePad_ReturnWeird()
+    public void OldPhonePad_ReturnTURING()
     {
         var expected = "TURING";
         var input = "8 88777444666*664#";
@@ -45,10 +45,37 @@ public class OldPhonePadTests
     }
 
     [Test]
-    public void OldPhonePad_IgnoringAfterSend()
+    public void OldPhonePad_IgnoringAllAfterSend()
     {
         var expected = "E";
         var input = "33#33#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void OldPhonePad_AllSpaceStarZeroInclude()
+    {
+        var expected = "HEE HEE";
+        var input = "4433 3304433 33#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void OldPhonePad_OnlyStar()
+    {
+        var expected = string.Empty;
+        var input = "*#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void OldPhonePad_OnlySend()
+    {
+        var expected = string.Empty;
+        var input = "#";
         var result = OldPhoneHelper.OldPhonePad(input);
         Assert.That(result, Is.EqualTo(expected));
     }
