@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using App.Constants;
 
 namespace App.Utils;
@@ -25,7 +20,7 @@ public static class OldPhoneHelper
         { '*', [] },
     };
 
-    public static char RetrieveCharacter(string charGroup)
+    public static char? RetrieveCharacter(string charGroup)
     {
         var distinctCharGroup = charGroup.Distinct().ToList();
 
@@ -35,7 +30,7 @@ public static class OldPhoneHelper
         var key = charGroup.First();
 
         if (!data.ContainsKey(key))
-            throw new InvalidOperationException(Messages.KeyNotFoundErrorMessage);
+            return null;
 
         var targetIndex = (charGroup.Length - 1) % data[key].Length;
 
@@ -68,13 +63,14 @@ public static class OldPhoneHelper
             {
                 charLinkedList.RemoveLast();
             }
-            else if (item == " ")
+            else if (item == " " || item == "#")
             {
                 continue;
             }
             else
             {
-                charLinkedList.AddLast(RetrieveCharacter(item));
+                if (RetrieveCharacter(item) is { } alpha)
+                    charLinkedList.AddLast(alpha);
             }
         }
         return string.Concat(charLinkedList);
