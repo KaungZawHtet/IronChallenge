@@ -6,7 +6,7 @@ public static class OldPhoneHelper
 {
     public static readonly Dictionary<char, char[]> data = new()
     {
-        { '1', new char[] { '&', '`', ')' } },
+        { '1', new char[] { '&', '\'', ')' } },
         { '2', new char[] { 'A', 'B', 'C' } },
         { '3', new char[] { 'D', 'E', 'F' } },
         { '4', new char[] { 'G', 'H', 'I' } },
