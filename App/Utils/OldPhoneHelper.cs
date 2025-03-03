@@ -5,33 +5,33 @@ namespace App.Utils;
 
 public static class OldPhoneHelper
 {
-    private const char starAsDelete = '*';
-    public const char hashAsSend = '#';
-    private const char spaceAsSeparator = ' ';
+    private const char StarAsDelete = '*';
+    public const char HashAsSend = '#';
+    private const char SpaceAsSeparator = ' ';
 
     //This way of keeping 0, 1, 2, 3 ... may be controversial and can say over-engineered in some perspectives. But for this moment, I choose to keep like this.
-    private const char zero = '0';
-    private const char one = '1';
-    private const char two = '2';
-    private const char three = '3';
-    private const char four = '4';
-    private const char five = '5';
-    private const char six = '6';
-    private const char seven = '7';
-    private const char eight = '8';
-    private const char nine = '9';
+    private const char Zero = '0';
+    private const char One = '1';
+    private const char Two = '2';
+    private const char Three = '3';
+    private const char Four = '4';
+    private const char Five = '5';
+    private const char Six = '6';
+    private const char Seven = '7';
+    private const char Eight = '8';
+    private const char Nine = '9';
 
-    private static readonly Dictionary<char, char[]> naturalNumberDict = new()
+    private static readonly Dictionary<char, char[]> NaturalNumberDict = new()
     {
-        { one, new char[] { '&', '\'', '(' } },
-        { two, new char[] { 'A', 'B', 'C' } },
-        { three, new char[] { 'D', 'E', 'F' } },
-        { four, new char[] { 'G', 'H', 'I' } },
-        { five, new char[] { 'J', 'K', 'L' } },
-        { six, new char[] { 'M', 'N', 'O' } },
-        { seven, new char[] { 'P', 'Q', 'R', 'S' } },
-        { eight, new char[] { 'T', 'U', 'V' } },
-        { nine, new char[] { 'W', 'X', 'Y', 'Z' } },
+        { One, new char[] { '&', '\'', '(' } },
+        { Two, new char[] { 'A', 'B', 'C' } },
+        { Three, new char[] { 'D', 'E', 'F' } },
+        { Four, new char[] { 'G', 'H', 'I' } },
+        { Five, new char[] { 'J', 'K', 'L' } },
+        { Six, new char[] { 'M', 'N', 'O' } },
+        { Seven, new char[] { 'P', 'Q', 'R', 'S' } },
+        { Eight, new char[] { 'T', 'U', 'V' } },
+        { Nine, new char[] { 'W', 'X', 'Y', 'Z' } },
     };
 
     private static char? RetrieveCharacter(string charGroup)
@@ -43,12 +43,12 @@ public static class OldPhoneHelper
 
         var key = charGroup.First();
 
-        if (!naturalNumberDict.ContainsKey(key))
+        if (!NaturalNumberDict.ContainsKey(key))
             return null;
 
-        var targetIndex = (charGroup.Length - 1) % naturalNumberDict[key].Length; // Circular indexing
+        var targetIndex = (charGroup.Length - 1) % NaturalNumberDict[key].Length; // Circular indexing
 
-        return naturalNumberDict[key][targetIndex];
+        return NaturalNumberDict[key][targetIndex];
     }
 
     private static List<StringBuilder> SeparateSameCharSequenceIntoList(string input) =>
@@ -77,29 +77,29 @@ public static class OldPhoneHelper
 
         foreach (var currentSegmentedInput in segmentedInputList)
         {
-            if (currentSegmentedInput[0] == starAsDelete && alphabetList.Any())
+            if (currentSegmentedInput[0] == StarAsDelete && alphabetList.Any())
             {
-                var zeroGroup = currentSegmentedInput.ToString();
-                foreach (var item in zeroGroup)
+                var ZeroGroup = currentSegmentedInput.ToString();
+                foreach (var item in ZeroGroup)
                 {
                     if (!alphabetList.Any())
                         break;
                     alphabetList.RemoveLast();
                 }
             }
-            else if (currentSegmentedInput[0] == spaceAsSeparator)
+            else if (currentSegmentedInput[0] == SpaceAsSeparator)
             {
                 continue;
             }
-            else if (currentSegmentedInput[0] == zero)
+            else if (currentSegmentedInput[0] == Zero)
             {
                 var zeroGroup = currentSegmentedInput.ToString();
                 foreach (var item in zeroGroup)
                 {
-                    alphabetList.AddLast(spaceAsSeparator);
+                    alphabetList.AddLast(SpaceAsSeparator);
                 }
             }
-            else if (currentSegmentedInput[0] == hashAsSend)
+            else if (currentSegmentedInput[0] == HashAsSend)
             {
                 break; //  This treats hash as final send button by ignoring all input after send button.
             }
