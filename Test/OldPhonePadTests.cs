@@ -75,4 +75,22 @@ public class OldPhonePadTests
         var result = OldPhoneHelper.OldPhonePad(input);
         Assert.That(result, Is.EqualTo(expected));
     }
+
+    [Test]
+    public void OldPhonePad_MultipleStarToRemoveChars()
+    {
+        var expected = "K";
+        var input = "223344***55#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void OldPhonePad_OnlyMultipleStars()
+    {
+        var expected = string.Empty;
+        var input = "***#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
 }

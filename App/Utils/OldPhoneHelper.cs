@@ -7,7 +7,7 @@ public static class OldPhoneHelper
 {
     private const char starAsDelete = '*';
     public const char hashAsSend = '#';
-    private const char spaceAsInterval = ' ';
+    private const char spaceAsSeparator = ' ';
 
     //This way of keeping 0, 1, 2, 3 ... may be controversial and can say over-engineered in some perspectives. But for this moment, I choose to keep like this.
     private const char zero = '0';
@@ -21,7 +21,7 @@ public static class OldPhoneHelper
     private const char eight = '8';
     private const char nine = '9';
 
-    private static readonly Dictionary<char, char[]> numberDict = new()
+    private static readonly Dictionary<char, char[]> naturalNumberDict = new()
     {
         { one, new char[] { '&', '\'', '(' } },
         { two, new char[] { 'A', 'B', 'C' } },
@@ -32,7 +32,6 @@ public static class OldPhoneHelper
         { seven, new char[] { 'P', 'Q', 'R', 'S' } },
         { eight, new char[] { 'T', 'U', 'V' } },
         { nine, new char[] { 'W', 'X', 'Y', 'Z' } },
-        { zero, new char[] { ' ' } },
     };
 
     private static char? RetrieveCharacter(string charGroup)
@@ -44,12 +43,12 @@ public static class OldPhoneHelper
 
         var key = charGroup.First();
 
-        if (!numberDict.ContainsKey(key))
+        if (!naturalNumberDict.ContainsKey(key))
             return null;
 
-        var targetIndex = (charGroup.Length - 1) % numberDict[key].Length; // Circular indexing
+        var targetIndex = (charGroup.Length - 1) % naturalNumberDict[key].Length; // Circular indexing
 
-        return numberDict[key][targetIndex];
+        return naturalNumberDict[key][targetIndex];
     }
 
     private static List<StringBuilder> SeparateSameCharSequenceIntoList(string input) =>
@@ -80,9 +79,15 @@ public static class OldPhoneHelper
         {
             if (currentSegmentedInput[0] == starAsDelete && alphabetList.Any())
             {
-                alphabetList.RemoveLast();
+                var zeroGroup = currentSegmentedInput.ToString();
+                foreach (var item in zeroGroup)
+                {
+                    if (!alphabetList.Any())
+                        break;
+                    alphabetList.RemoveLast();
+                }
             }
-            else if (currentSegmentedInput[0] == spaceAsInterval)
+            else if (currentSegmentedInput[0] == spaceAsSeparator)
             {
                 continue;
             }
@@ -91,7 +96,7 @@ public static class OldPhoneHelper
                 var zeroGroup = currentSegmentedInput.ToString();
                 foreach (var item in zeroGroup)
                 {
-                    alphabetList.AddLast(numberDict[zero].First());
+                    alphabetList.AddLast(spaceAsSeparator);
                 }
             }
             else if (currentSegmentedInput[0] == hashAsSend)
