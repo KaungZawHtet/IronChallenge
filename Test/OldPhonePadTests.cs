@@ -105,4 +105,14 @@ public class OldPhonePadTests
         var result = OldPhoneHelper.OldPhonePad(input);
         Assert.That(result, Is.EqualTo(expected));
     }
+
+    [Test]
+    [Description("This unit test checks whether including multiple spaces between two char is ok.")]
+    public void OldPhonePad_MultipleSpaceInBetween()
+    {
+        var expected = "BB";
+        var input = "22   22#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
 }
