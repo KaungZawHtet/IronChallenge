@@ -56,7 +56,7 @@ public static class OldPhoneHelper
             new List<StringBuilder>(),
             (accumulator, next) =>
             {
-                if (accumulator.Count == 0 || accumulator.Last()[0] != next)
+                if (accumulator.Count is 0 || accumulator.Last()[0] != next)
                 {
                     accumulator.Add(new StringBuilder($"{next}"));
                 }
@@ -77,7 +77,7 @@ public static class OldPhoneHelper
 
         foreach (var currentSegmentedInput in segmentedInputList)
         {
-            if (currentSegmentedInput[0] == StarAsDelete && alphabetList.Any())
+            if (currentSegmentedInput[0] is StarAsDelete && alphabetList.Any())
             {
                 var ZeroGroup = currentSegmentedInput.ToString();
                 foreach (var item in ZeroGroup)
@@ -87,11 +87,11 @@ public static class OldPhoneHelper
                     alphabetList.RemoveLast();
                 }
             }
-            else if (currentSegmentedInput[0] == SpaceAsSeparator)
+            else if (currentSegmentedInput[0] is SpaceAsSeparator)
             {
                 continue;
             }
-            else if (currentSegmentedInput[0] == Zero)
+            else if (currentSegmentedInput[0] is Zero)
             {
                 var zeroGroup = currentSegmentedInput.ToString();
                 foreach (var item in zeroGroup)
@@ -99,7 +99,7 @@ public static class OldPhoneHelper
                     alphabetList.AddLast(SpaceAsSeparator);
                 }
             }
-            else if (currentSegmentedInput[0] == HashAsSend)
+            else if (currentSegmentedInput[0] is HashAsSend)
             {
                 break; //  This treats hash as final send button by ignoring all input after send button.
             }
