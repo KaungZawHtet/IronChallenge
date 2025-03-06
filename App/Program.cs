@@ -14,7 +14,7 @@ while (true)
         if (!regex.IsMatch(input))
             throw new InvalidOperationException(Messages.InvalidChars);
 
-        if (input.Last() != OldPhoneHelper.HashAsSend)
+        if (input.Last() is not OldPhoneHelper.HashAsSend)
             throw new InvalidOperationException(Messages.InvalidLastChar);
 
         Console.WriteLine(string.Format(Messages.OutputResult, OldPhoneHelper.OldPhonePad(input)));
