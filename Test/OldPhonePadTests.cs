@@ -115,4 +115,14 @@ public class OldPhonePadTests
         var result = OldPhoneHelper.OldPhonePad(input);
         Assert.That(result, Is.EqualTo(expected));
     }
+
+    [Test]
+    [Description("This unit test checks whether circular indexing is ok.")]
+    public void OldPhonePad_CircularIndexing()
+    {
+        var expected = "C";
+        var input = "222222#";
+        var result = OldPhoneHelper.OldPhonePad(input);
+        Assert.That(result, Is.EqualTo(expected));
+    }
 }
