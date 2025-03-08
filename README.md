@@ -1,4 +1,4 @@
-# Iron Challenge (OldPhonePad)
+# OldPhonePad
 
 ## Overview
 This is a .NET console application that simulate multi-tap text input in old phones (OldPhonePad).
